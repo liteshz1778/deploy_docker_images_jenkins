@@ -1,0 +1,113 @@
+pipeline{
+	agent any
+	options{
+		timeout(time: 5,unit: 'MINUTES')
+		retry(1)
+	}
+	parameters{
+		string(name: 'git_repo', defaultValue: 'https://github.com/liteshz1778/httpd_server_files.git', description: 'Enter Git Url:')
+		string(name: 'git_branch', defaultValue: 'master', description: 'Enter Git Branch:')
+		string(name: 'image_name', defaultValue: 'httpd_server_files', description: 'Enter Image Name:')
+		string(name: 'image_tag', defaultValue: 'latest', description: 'Enter Image Tag:')
+		string(name: 'local_expose_port', defaultValue: '9090', description: 'Enter Local Exposed Port No.')
+		string(name: 'container_exposed_port', defaultValue: '80', description: 'Enter Container Exposed Port No.')
+		booleanParam(name: 'push_image', defaultValue: false, description: 'Enter true if we want to push image to registry')
+	}
+	environment{
+		docker_username="liteshz"
+	}
+	stages{
+		stage("Workspace CleanUp"){
+			steps{ 
+				sh "rm -rvf *"
+			}
+		}
+		stage("Cloning Git Repo...."){
+			steps{
+				sh "git clone -b ${params.git_branch} ${params.git_repo}"
+			}
+		}
+		stage("Fetch Git Repo Name"){
+			steps{
+				script{
+					env.REPO_NAME = params.git_repo.tokenize("/").last().replace(".git","")
+					echo "REPO_NAME: ${env.REPO_NAME}"
+				}
+			}
+		}
+		stage('Registry Login') {
+			steps {
+				withCredentials([usernamePassword(
+					credentialsId: 'a6776903-39cc-421a-bade-bdc2f9c2922f',
+					usernameVariable: 'DOCKER_USER',
+					passwordVariable: 'DOCKER_PASS'
+				)]) {
+						sh """
+							set -e
+							docker login -u $DOCKER_USER -p $DOCKER_PASS
+						"""
+					}
+			}
+		}
+		stage("Build Docker Image"){
+			steps{
+				dir(env.REPO_NAME){
+					sh """
+						set -e
+						docker build -t ${env.docker_username}/${params.image_name}:${params.image_tag} .
+					"""
+				}
+			}
+		}
+		stage("Delete Older Running Container"){
+			steps{
+				dir(env.REPO_NAME){
+					sh """
+						set -e
+						docker container rm -f app || true
+					"""
+				}
+			}
+		}
+		stage("Running Container & exposing localhost port to access the service"){
+			steps{
+				sh """
+					set -e			
+					docker run -d --name app -p ${params.local_expose_port}:${params.container_exposed_port} ${env.docker_username}/${params.image_name}:${params.image_tag}
+				"""	
+			}
+		}
+		stage("Push Image based user input..."){
+			steps{
+				script{
+					if(params.push_image){
+						// Rename image & then push to docker registry
+						sh "docker tag ${env.docker_username}/${params.image_name}:${params.image_tag} ${env.docker_username}/docker-jenkins-cicd-demo:${params.image_name}_${params.image_tag}"
+						sh "docker push ${env.docker_username}/docker-jenkins-cicd-demo:${params.image_name}_${params.image_tag}"
+					}else {
+						echo "Skipping image push as per user input"
+						currentBuild.result = 'ABORTED'
+						error("Build aborted by condition")
+					}
+				}
+			}
+		}
+	}
+	post {
+			always {
+				sh '''
+					docker logout || true
+				'''
+			}
+
+			success {
+				echo "Application Build Successfully"
+			}
+
+			failure {
+				echo "Build Failed - Fix is required!!"
+			}
+		}
+}
+
+
