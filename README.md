@@ -23,7 +23,7 @@ Runs containers (your apps)
 
 # Command to run container & validate docker version & process which is connected with host server container.
 
-1. docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock iteshz/custom-jenkins-docker:latest
+1. docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock liteshz/custom-jenkins-docker:latest
 2. docker container ls
 3. docker container exec -it {{ container_id }} cat /var/jenkins_home/secrets/initialAdminPassword
 4. docker exec -u root -it {{ container_id }} bash
