@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Create Hello World File on host') {
+            steps {
+                sh 'echo "Hello World > hellowrld.txt"'
+            }
+        }
+
+        stage('Checking docker access on host') {
+            steps {
+                sh 'docker --version'
+            }
+        }
+    }
+}
