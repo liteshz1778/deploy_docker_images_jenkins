@@ -1,0 +1,247 @@
+Started by user admin
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/deploy_dummy_httpd_server
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timeout
+Timeout set to expire in 5 min 0 sec
+[Pipeline] {
+[Pipeline] retry
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Workspace CleanUp)
+[Pipeline] sh
++ rm -rvf httpd_server_files httpd_server_files@tmp
+removed directory 'httpd_server_files/.git/branches'
+removed 'httpd_server_files/.git/description'
+removed 'httpd_server_files/.git/hooks/applypatch-msg.sample'
+removed 'httpd_server_files/.git/hooks/commit-msg.sample'
+removed 'httpd_server_files/.git/hooks/fsmonitor-watchman.sample'
+removed 'httpd_server_files/.git/hooks/post-update.sample'
+removed 'httpd_server_files/.git/hooks/pre-applypatch.sample'
+removed 'httpd_server_files/.git/hooks/pre-commit.sample'
+removed 'httpd_server_files/.git/hooks/pre-merge-commit.sample'
+removed 'httpd_server_files/.git/hooks/pre-push.sample'
+removed 'httpd_server_files/.git/hooks/pre-rebase.sample'
+removed 'httpd_server_files/.git/hooks/pre-receive.sample'
+removed 'httpd_server_files/.git/hooks/prepare-commit-msg.sample'
+removed 'httpd_server_files/.git/hooks/push-to-checkout.sample'
+removed 'httpd_server_files/.git/hooks/sendemail-validate.sample'
+removed 'httpd_server_files/.git/hooks/update.sample'
+removed directory 'httpd_server_files/.git/hooks'
+removed 'httpd_server_files/.git/info/exclude'
+removed directory 'httpd_server_files/.git/info'
+removed 'httpd_server_files/.git/config'
+removed 'httpd_server_files/.git/objects/pack/pack-6cb973a6da69aa134acd61a8a165328386fe4c11.pack'
+removed 'httpd_server_files/.git/objects/pack/pack-6cb973a6da69aa134acd61a8a165328386fe4c11.rev'
+removed 'httpd_server_files/.git/objects/pack/pack-6cb973a6da69aa134acd61a8a165328386fe4c11.idx'
+removed directory 'httpd_server_files/.git/objects/pack'
+removed directory 'httpd_server_files/.git/objects/info'
+removed directory 'httpd_server_files/.git/objects'
+removed 'httpd_server_files/.git/HEAD'
+removed 'httpd_server_files/.git/refs/heads/master'
+removed directory 'httpd_server_files/.git/refs/heads'
+removed directory 'httpd_server_files/.git/refs/tags'
+removed 'httpd_server_files/.git/refs/remotes/origin/HEAD'
+removed directory 'httpd_server_files/.git/refs/remotes/origin'
+removed directory 'httpd_server_files/.git/refs/remotes'
+removed directory 'httpd_server_files/.git/refs'
+removed 'httpd_server_files/.git/packed-refs'
+removed 'httpd_server_files/.git/logs/refs/remotes/origin/HEAD'
+removed directory 'httpd_server_files/.git/logs/refs/remotes/origin'
+removed directory 'httpd_server_files/.git/logs/refs/remotes'
+removed 'httpd_server_files/.git/logs/refs/heads/master'
+removed directory 'httpd_server_files/.git/logs/refs/heads'
+removed directory 'httpd_server_files/.git/logs/refs'
+removed 'httpd_server_files/.git/logs/HEAD'
+removed directory 'httpd_server_files/.git/logs'
+removed 'httpd_server_files/.git/index'
+removed directory 'httpd_server_files/.git'
+removed 'httpd_server_files/.vimrc'
+removed 'httpd_server_files/Dockerfile'
+removed 'httpd_server_files/README.md'
+removed 'httpd_server_files/first/index.html'
+removed directory 'httpd_server_files/first'
+removed 'httpd_server_files/index.html'
+removed 'httpd_server_files/jenkins_executions/jenkins_trigger_script.sh'
+removed directory 'httpd_server_files/jenkins_executions'
+removed 'httpd_server_files/kubernetes_manifests/deployment-svc-httpd-server.yaml'
+removed directory 'httpd_server_files/kubernetes_manifests'
+removed 'httpd_server_files/script.sh'
+removed 'httpd_server_files/script_output/index.html'
+removed directory 'httpd_server_files/script_output'
+removed 'httpd_server_files/second/index.html'
+removed directory 'httpd_server_files/second'
+removed directory 'httpd_server_files'
+removed directory 'httpd_server_files@tmp'
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Cloning Git Repo....)
+[Pipeline] sh
++ git clone -b master https://github.com/liteshz1778/httpd_server_files.git
+Cloning into 'httpd_server_files'...
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Fetch Git Repo Name)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+REPO_NAME: httpd_server_files
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Registry Login)
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKER_PASS
+[Pipeline] {
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [DOCKER_PASS]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ set -e
++ docker login -u liteshz -p ****
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/jenkins_home/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+[Pipeline] dir
+Running in /var/jenkins_home/workspace/deploy_dummy_httpd_server/httpd_server_files
+[Pipeline] {
+[Pipeline] sh
++ set -e
++ docker build -t liteshz/httpd_server_files05:latest .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 526B done
+#1 DONE 0.0s
+
+#2 [auth] library/httpd:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/httpd:latest
+#3 DONE 0.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/httpd:latest@sha256:89a0b59e6d7285f00fc8df952a1579c31eb035cbdccb96690051e8bb6432cbea
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 64.23kB done
+#6 DONE 0.0s
+
+#7 [2/5] RUN rm -rf /usr/local/apache2/htdocs/*
+#7 CACHED
+
+#8 [3/5] COPY . /usr/local/apache2/htdocs/
+#8 DONE 0.1s
+
+#9 [4/5] WORKDIR /usr/local/apache2/htdocs/
+#9 DONE 0.0s
+
+#10 [5/5] RUN chmod 755 script.sh
+#10 DONE 0.3s
+
+#11 exporting to image
+#11 exporting layers 0.1s done
+#11 writing image sha256:3ab84b4e92284b1a24d24ac380c21dfccf400b0368c03ba64c28ca8126a48882 done
+#11 naming to docker.io/liteshz/httpd_server_files05:latest done
+#11 DONE 0.1s
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Delete Older Running Container)
+[Pipeline] dir
+Running in /var/jenkins_home/workspace/deploy_dummy_httpd_server/httpd_server_files
+[Pipeline] {
+[Pipeline] sh
++ set -e
++ docker container rm -f app
+app
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Running Container & exposing localhost port to access the service)
+[Pipeline] sh
++ set -e
++ docker run -d --name app -p 9090:80 liteshz/httpd_server_files05:latest
+4cf30e74a33bb2f3c7b89f3414d651c3fa57f13b6d7485fcb343819d1346b84e
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push Image based user input...)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ docker tag liteshz/httpd_server_files05:latest liteshz/docker-jenkins-cicd-demo:httpd_server_files05_latest
+[Pipeline] sh
++ docker push liteshz/docker-jenkins-cicd-demo:httpd_server_files05_latest
+The push refers to repository [docker.io/liteshz/docker-jenkins-cicd-demo]
+174ca6813296: Preparing
+5f70bf18a086: Preparing
+4df5ccc93d71: Preparing
+b75e64f4eedb: Preparing
+35ee75b41286: Preparing
+9fc78d3a92c8: Preparing
+f093b22cd7fa: Preparing
+5f70bf18a086: Preparing
+009c68321b72: Preparing
+6d7c150df58d: Preparing
+9fc78d3a92c8: Waiting
+f093b22cd7fa: Waiting
+009c68321b72: Waiting
+6d7c150df58d: Waiting
+b75e64f4eedb: Layer already exists
+5f70bf18a086: Layer already exists
+35ee75b41286: Layer already exists
+9fc78d3a92c8: Layer already exists
+009c68321b72: Layer already exists
+f093b22cd7fa: Layer already exists
+6d7c150df58d: Layer already exists
+4df5ccc93d71: Pushed
+174ca6813296: Pushed
+httpd_server_files05_latest: digest: sha256:f8e889337cf647d65c4c5c14c5b0ef57e97077ab298fadc97147f6625465c134 size: 2401
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] sh
++ docker logout
+Removing login credentials for https://index.docker.io/v1/
+[Pipeline] echo
+Application Build Successfully
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // retry
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
