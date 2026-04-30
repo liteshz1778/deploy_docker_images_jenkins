@@ -2,7 +2,10 @@
 This repo contains files related automating docker images build, test &amp; deploying on server using jenkins
 
 # Process Flow of this taks is:
- Jenkins container
+<h2>Jenkins + Docker Architecture</h2>
+
+<pre>
+Jenkins Container
     │
     ├── Docker CLI (inside container)
     │
@@ -14,6 +17,7 @@ Host Docker Engine
     │
     ▼
 Runs containers (your apps)
+</pre>
 
 # Prerequisites:
 1. docker must be installed on host server
