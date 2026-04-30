@@ -19,3 +19,8 @@ hub.docker.com/repository/docker/liteshz/custom-jenkins-docker/general
 
 # Jenkins Home Directory on Host Server: 
 /var/lib/docker/volumes/jenkins_home/_data
+
+# Output Screens
+<img width="2880" height="1712" alt="image" src="https://github.com/user-attachments/assets/a9560b12-da87-4497-afcb-2d161c434a2c" />
+
+<img width="2880" height="1706" alt="image" src="https://github.com/user-attachments/assets/2acd60cf-3654-4729-9cf9-c3085d6c3b1d" />
