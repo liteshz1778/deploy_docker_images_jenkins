@@ -12,8 +12,8 @@ hub.docker.com/repository/docker/liteshz/custom-jenkins-docker/general
 
 1. docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock iteshz/custom-jenkins-docker:latest
 2. docker container ls
-3. docker container exec -it 9b59c2394661 cat /var/jenkins_home/secrets/initialAdminPassword
-4. docker exec -u root -it 9b59c2394661 bash
+3. docker container exec -it {{ container_id }} cat /var/jenkins_home/secrets/initialAdminPassword
+4. docker exec -u root -it {{ container_id }} bash
 5. docker version
 6. docker ps
 
