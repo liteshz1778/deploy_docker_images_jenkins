@@ -11,4 +11,4 @@
 <img width="2880" height="1704" alt="image" src="https://github.com/user-attachments/assets/4cbccb4e-3023-46a7-a26b-ec9f46b069ce" />
 <img width="2880" height="1710" alt="image" src="https://github.com/user-attachments/assets/31f64978-8735-4375-ad31-e49bc4ba7a25" />
 
-# Have Pushed Images To [docker/liteshz/docker-jenkins-cicd-demo](https://hub.docker.com/repository/docker/liteshz/docker-jenkins-cicd-demo/general) Docker Registry 
+# Have Pushed Images To [liteshz/docker-jenkins-cicd-demo](https://hub.docker.com/repository/docker/liteshz/docker-jenkins-cicd-demo/general) Docker Registry 
