@@ -5,8 +5,7 @@ This repo contains files related automating docker images build, test &amp; depl
 1. docker must be installed on host server
 
 
-# Docker Image:
-hub.docker.com/repository/docker/liteshz/custom-jenkins-docker/general
+# Docker Image: [custom-jenkins-docker](https://hub.docker.com/repository/docker/liteshz/custom-jenkins-docker/general)
 
 # Command to run container & validate docker version & process which is connected with host server container.
 
