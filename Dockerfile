@@ -9,6 +9,6 @@ RUN apt-get update && \
     apt-get clean
 
 # Give Jenkins permissions
-RUN groupadd -g 998 docker && usermod -aG docker jenkins
+RUN docker && usermod -aG docker jenkins
 
 USER jenkins

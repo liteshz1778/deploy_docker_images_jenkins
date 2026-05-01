@@ -43,8 +43,11 @@ Note: Check the docker groupid in host & update same in below command
 <img width="2880" height="1706" alt="image" src="https://github.com/user-attachments/assets/2acd60cf-3654-4729-9cf9-c3085d6c3b1d" />
 
 
-# Note: if we face any issue while Docker CLI inside of jenkins container from Host Server then execute below command on host
-chmod 666 /var/run/docker.sock
+# Note: 
+1. if we face any issue while Docker CLI inside of jenkins container from Host Server then execute below command in jenkins contaianer
+    chmod 666 /var/run/docker.sock
 
-This is happening bcoz of docker groupid is different in host machine & jenkins container. 
+2. This is happening bcoz of docker groupid is different in host machine & jenkins container. 
+    used this cmd to know the groupid: getent group docker
+
 Have handle that issue in 1st command as well while creating the jnkins container refer the same.
