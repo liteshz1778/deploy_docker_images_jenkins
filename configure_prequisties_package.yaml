@@ -18,3 +18,10 @@
         name: '{{ item }}'
         state: present
       loop: '{{ packages }}'
+    - name: 'Start/Enable {{ item }} SVC'
+      service:
+        name: '{{ item }}'
+        state: started
+        enabled: true
+      loop:
+        - docker 
