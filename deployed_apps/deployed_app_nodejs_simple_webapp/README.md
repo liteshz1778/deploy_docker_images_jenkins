@@ -8,5 +8,7 @@ Refer this repo: https://github.com/liteshz1778/demo_webapp_nodejs.git
 <img width="2880" height="1708" alt="image" src="https://github.com/user-attachments/assets/074148b2-64d3-4fa5-bca1-eafcacd5eae0" />
 <img width="2880" height="1710" alt="image" src="https://github.com/user-attachments/assets/bd959bcf-995a-4b9f-b1b9-084ad6a68543" />
 <img width="2880" height="1706" alt="image" src="https://github.com/user-attachments/assets/77b250bc-6a35-4e6a-a9c8-74a96d923b3a" />
+<img width="2880" height="1708" alt="image" src="https://github.com/user-attachments/assets/ea7ec3c9-c570-4a4d-9693-2773b7099903" />
+
 
 # Have Pushed Newly Build Images To [liteshz/docker-jenkins-cicd-demo](https://hub.docker.com/repository/docker/liteshz/docker-jenkins-cicd-demo/general) Docker Registry 
