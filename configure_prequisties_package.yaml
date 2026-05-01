@@ -1,0 +1,20 @@
+- name: 'Update yum packages & Installing Pre-Reqisties Packages'
+  hosts: all
+  vars:
+    packages:
+      - git
+      - docker 
+      - java-17-amazon-corretto.x86_64
+      - maven
+  tasks:
+    - name: Update all packages and refresh cache
+      yum:
+        name: "*"
+        state: latest
+        update_cache: yes
+
+    - name: 'Installing {{ item }}'
+      package:
+        name: '{{ item }}'
+        state: present
+      loop: '{{ packages }}'
