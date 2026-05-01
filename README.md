@@ -20,8 +20,7 @@ Runs containers (your apps)
 </pre>
 
 # Prerequisites:
-1. docker must be installed on host server
-
+Refer startup_script.sh to install the pre-reqisties python package & then followed by ansible playbook.yaml file.
 
 # Docker Image: [custom-jenkins-docker](https://hub.docker.com/repository/docker/liteshz/custom-jenkins-docker/general)
 
