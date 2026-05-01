@@ -2,13 +2,20 @@ FROM jenkins/jenkins:lts-jdk21
 
 USER root
 
-# Install Docker CLI (NOT daemon)
+# Installing docker & maven
 RUN apt-get update && \
-    apt-get install -y docker.io && \
-    apt-get install -y maven && \
+    apt-get install -y curl gnupg docker.io maven && \
     apt-get clean
 
-# Give Jenkins permissions
-RUN docker && usermod -aG docker jenkins
+# Install Node.js &  npm modules
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean
+
+# Verify installations
+RUN node -v && npm -v && mvn -v && docker --version
+
+# Give Jenkins permissions to Docker
+RUN usermod -aG docker jenkins
 
 USER jenkins
