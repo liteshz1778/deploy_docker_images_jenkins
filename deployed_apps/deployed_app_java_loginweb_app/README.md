@@ -12,4 +12,4 @@ Refer this repo: https://github.com/liteshz1778/LoginWebApp.git
 <img width="2880" height="1708" alt="image" src="https://github.com/user-attachments/assets/bec24737-9f60-4370-8dce-e3cba656acbc" />
 <img width="2880" height="1708" alt="image" src="https://github.com/user-attachments/assets/38ce99a7-2e61-4870-abcb-e84134a481ca" />
 
-# Have Pushed Images To [liteshz/docker-jenkins-cicd-demo](https://hub.docker.com/repository/docker/liteshz/docker-jenkins-cicd-demo/general) Docker Registry 
+# Have Pushed Newly Build Images To [liteshz/docker-jenkins-cicd-demo](https://hub.docker.com/repository/docker/liteshz/docker-jenkins-cicd-demo/general) Docker Registry 
